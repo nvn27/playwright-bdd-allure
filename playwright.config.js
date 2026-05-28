@@ -6,7 +6,7 @@ import * as os from 'node:os';
 const testDir = defineBddConfig({
   features: "./tests/features/*.feature",
   steps: "./tests/steps/*.js"
-})
+});
 
 /**
  * Read environment variables from file.
@@ -38,13 +38,14 @@ export default defineConfig({
     }],
     ['allure-playwright', {
       environmentInfo: {
-        "App Name": "IFA",
+        "App Name": "The Internet - Heroku",
         "OS Platform": os.platform(),
         "OS Version": os.version(),
         "OS Release": os.release(),
         "Node Version": process.version,
       }
-    }]
+    }],
+    ['./reporters/custom-reporter.js']
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {

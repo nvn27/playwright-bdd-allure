@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 async function globalSetup() {
+    console.log(`=================== BEGINNING TEST EXECUTION - ${new Date()} ===================`);
 
     let dirs = ['./allure-results', './allure-report'];
 
