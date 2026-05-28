@@ -1,0 +1,31 @@
+{
+  "name": "playwright-bdd-allure",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "testChrome": "npx bddgen && npx playwright test --project GoogleChrome",
+    "testChromeH": "npx bddgen && npx playwright test --project GoogleChrome --headed",
+    "allureReport": "npx allure generate ./allure-results -o ./allure-report && npx allure open ./allure-report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nvn27/playwright-bdd-allure.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/nvn27/playwright-bdd-allure/issues"
+  },
+  "homepage": "https://github.com/nvn27/playwright-bdd-allure#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^25.9.1",
+    "allure": "^3.8.2",
+    "allure-playwright": "^3.9.0",
+    "playwright": "^1.60.0",
+    "playwright-bdd": "^8.5.1"
+  }
+}
