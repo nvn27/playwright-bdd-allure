@@ -44,7 +44,8 @@ export default defineConfig({
         "OS Release": os.release(),
         "Node Version": process.version,
       }
-    }]
+    }],
+    ['./reporters/custom-reporter.js']
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {

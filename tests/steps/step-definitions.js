@@ -1,11 +1,11 @@
 const { page, expect } = require('@playwright/test');
 const { createBdd } = require('playwright-bdd');
-const allure = require('allure-js-commons');
-
 const { Given, When, And, Then, BeforeStep, AfterStep } = createBdd();
+const allure = require('allure-js-commons');
 
 // POM imports
 const HomePage = require('../../pages/home-page.js');
+const CustomReporter = require('../../reporters/custom-reporter.js');
 
 BeforeStep(async function ({ page }, step) {
 });
