@@ -42,7 +42,7 @@ pipeline {
             steps {
                 script{
                     if(params.HEADLESS == true) {
-                        bat "npm run testChrome --project=${params.BROWSER}" --headed
+                        bat "npm run testChrome --project=${params.BROWSER} --headed"
                     } else {
                         bat "npm run testChrome --project=${params.BROWSER}"
                     }
