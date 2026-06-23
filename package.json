@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "testChrome": "npx bddgen && npx playwright test --project GoogleChrome",
-    "testChromeH": "npx bddgen && npx playwright test --project GoogleChrome --headed",
+    "testChromeHeaded": "npx bddgen && npx playwright test --project GoogleChrome --headed",
+    "testEdge": "npx bddgen && npx playwright test --project MicrosoftEdge",
+    "testEdgeHeaded": "npx bddgen && npx playwright test --project MicrosoftEdge --headed",
     "allureReport": "npx allure generate ./allure-results -o ./allure-report && npx allure open ./allure-report",
     "test": "npm run testChrome && npm run allureReport"
   },
