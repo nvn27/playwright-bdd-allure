@@ -35,7 +35,7 @@ Given(`Launch app`, async ({ page }) => {
     const response = await responsePromise;
 
     logger.log('network info');
-    allure.parameter('NETWORK', `${JSON.stringify(response.headers().date)}`);
+    allure.parameter('Date', `${JSON.stringify(response.headers().date)}`);
 
     // let keys = await Object.keys(response.headers());
 
