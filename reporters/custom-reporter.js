@@ -1,9 +1,10 @@
 const fs = require('fs');
 const util = require('util');
-
 const Logger = require('../logger/logger.js');
+const Utility = require('../utility/utils.js')
 
 const logger = new Logger();
+const utils = new Utility();
 
 // const logFile = fs.createWriteStream('./execution-log.log', { flags: 'a' });
 
@@ -51,6 +52,8 @@ class CustomReporter {
     }
 
     onEnd(result) {
+        utils.cleanupAllureReport();
+
         logger.log(`EVENT: onEnd`);
         logger.log(`FINISHED THE RUN | STATUS: ${(result.status)}`);
     }
