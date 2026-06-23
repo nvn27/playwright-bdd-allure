@@ -29,20 +29,24 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
+                script {
                 bat 'npm install'
 
                 if(params.BROWSER == "chromium")
                     bat 'npx playwright install chromium'
+                }
             }
         }
 
         stage('Run Tests') {
             steps {
-                if(params.HEADLESS == true){
-                    bat "npm run testChrome --project=${params.BROWSER}" --headed
+                script{
+                    if(params.HEADLESS == true) {
+                        bat "npm run testChrome --project=${params.BROWSER}" --headed
+                    } else {
+                        bat "npm run testChrome --project=${params.BROWSER}"
+                    }
                 }
-                
-                bat "npm run testChrome --project=${params.BROWSER}"
             }
         }
 
