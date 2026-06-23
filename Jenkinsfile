@@ -42,9 +42,9 @@ pipeline {
             steps {
                 script{
                     if(params.HEADLESS == true) {
-                        bat "npx bddgen && npx playwright test --project ${params.BROWSER} --headed"
-                    } else {
                         bat "npx bddgen && npx playwright test --project ${params.BROWSER}"
+                    } else {
+                        bat "npx bddgen && npx playwright test --project ${params.BROWSER} --headed"
                     }
                 }
             }
