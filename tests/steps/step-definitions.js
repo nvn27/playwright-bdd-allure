@@ -23,15 +23,31 @@ AfterStep(async function ({ page }, step) {
 });
 
 Given(`Launch app`, async ({ page }) => {
-    const requestPromise = page.waitForRequest('https://the-internet.herokuapp.com/');
+    const responsePromise = page.waitForResponse(response =>
+        response.url().includes('herokuapp.com')
+        && response.status() === 200
+    );
 
     let url = 'https://the-internet.herokuapp.com/';
     await page.goto(url);
     logger.log(`URL: ${url}`);
 
-    const resp = await requestPromise;
+    const response = await responsePromise;
 
-    // process.stdout.write(await resp.headers + '\n');
+    logger.log('network info');
+    allure.parameter('NETWORK', `${JSON.stringify(response.headers().date)}`);
+
+    // let keys = await Object.keys(response.headers());
+
+    // logger.log(Object.keys(response.headers()));
+
+    // for (let i = 0; i < 5; i++) {
+    //     allure.parameter(keys[i], response.headers().keys[i]);
+    // }
+
+    // for (let entry of Object.entries(response.headers())) {
+    //     allure.parameter('Entry', entry);
+    // }
 
 });
 
