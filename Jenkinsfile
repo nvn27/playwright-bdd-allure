@@ -49,11 +49,13 @@ pipeline {
         always {
 
             // Publish Allure report in Jenkins UI
-            allure(
-                includeProperties: false,
-                jdk: '',
-                results: [[path: 'allure-results']]
-            )
+            allure allureVersion: '3', commandline: 'ALLURE_CLI', includeProperties: false, jdk: '', resultPolicy: 'LEAVE_AS_IS', results: [[path: 'allure-results']]
+
+            // allure(
+            //     includeProperties: false,
+            //     jdk: '',
+            //     results: [[path: 'allure-results']]
+            // )
 
             // Archive artifacts
             archiveArtifacts artifacts: 'allure-results/**',
