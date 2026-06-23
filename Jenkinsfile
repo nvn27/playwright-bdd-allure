@@ -15,7 +15,7 @@ pipeline {
     }
 
      parameters {
-        string(name: 'BROWSER', defaultValue: 'GoogleChrome', description: 'Browser name')
+        choice(name: 'BROWSER', choices: ['GoogleChrome', 'MicrosoftEdge', 'chromium'], description: 'Select the browser for test execution')
         booleanParam(name: 'HEADLESS', defaultValue: true, description: 'Run in headless mode')
     }
 
@@ -42,9 +42,9 @@ pipeline {
             steps {
                 script{
                     if(params.HEADLESS == true) {
-                        bat "npm run testChrome --project=${params.BROWSER} --headed"
+                        bat "npx bddgen && npx playwright test --project ${params.BROWSER} --headed"
                     } else {
-                        bat "npm run testChrome --project=${params.BROWSER}"
+                        bat "npx bddgen && npx playwright test --project ${params.BROWSER}"
                     }
                 }
             }
