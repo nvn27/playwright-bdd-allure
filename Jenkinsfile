@@ -14,8 +14,12 @@ pipeline {
         // JOB_NAME = "${env.JOB_NAME}"
     }
 
-    stages {
+     parameters {
+        string(name: 'BROWSER', defaultValue: 'GoogleChrome', description: 'Browser name')
+        booleanParam(name: 'HEADLESS', defaultValue: true, description: 'Run in headless mode')
+    }
 
+    stages {
         stage('Checkout') {
             steps {
                 git branch: 'master',
@@ -26,13 +30,19 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 bat 'npm install'
-                // bat 'npx playwright install'
+
+                if(params.BROWSER == "chromium")
+                    bat 'npx playwright install chromium'
             }
         }
 
         stage('Run Tests') {
             steps {
-                bat 'npm run testChrome'
+                if(params.HEADLESS == true){
+                    bat "npm run testChrome --project=${params.BROWSER}" --headed
+                }
+                
+                bat "npm run testChrome --project=${params.BROWSER}"
             }
         }
 
