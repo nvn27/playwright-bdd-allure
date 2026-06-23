@@ -36,12 +36,12 @@ pipeline {
             }
         }
 
-        stage('Generate Allure Report') {
-            steps {
-                bat 'npx allure generate ./allure-results -o ./allure-report'
-                // bat 'allure generate allure-results --clean'
-            }
-        }
+        // stage('Generate Allure Report') {
+        //     steps {
+        //         bat 'npx allure generate ./allure-results -o ./allure-report'
+        //         // bat 'allure generate allure-results --clean'
+        //     }
+        // }
     }
 
     post {
