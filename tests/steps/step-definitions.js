@@ -3,9 +3,13 @@ const { createBdd } = require('playwright-bdd');
 const { Given, When, And, Then, BeforeStep, AfterStep } = createBdd();
 const allure = require('allure-js-commons');
 
+const Logger = require('../../logger/logger.js');
+
+const logger = new Logger();
+
 // POM imports
 const HomePage = require('../../pages/home-page.js');
-const CustomReporter = require('../../reporters/custom-reporter.js');
+// const CustomReporter = require('../../reporters/custom-reporter.js');
 
 BeforeStep(async function ({ page }, step) {
 });
@@ -23,16 +27,16 @@ Given(`Launch app`, async ({ page }) => {
 
     let url = 'https://the-internet.herokuapp.com/';
     await page.goto(url);
-    console.log(`URL: ${url}`);
+    logger.log(`URL: ${url}`);
 
     const resp = await requestPromise;
 
-    process.stdout.write(resp.body.Nel + '\n');
+    // process.stdout.write(await resp.headers + '\n');
 
 });
 
 When('Verify page title {string}', async ({ page }, pageTitle) => {
-    console.log(`Page Title: ${await page.title()}`);
+    logger.log(`Page Title: ${await page.title()}`);
     await expect.soft(await page).toHaveTitle(pageTitle);
 });
 
@@ -40,7 +44,7 @@ When('Verify home page heading', async ({ page }) => {
     // page objects
     const homePage = new HomePage(page);
 
-    console.log(`Page Heading: ${await homePage.getPageHeading()}`);
+    logger.log(`Page Heading: ${await homePage.getPageHeading()}`);
     await expect.soft(await homePage.getPageHeading()).toBe("Welcome to the-internet");
 });
 
