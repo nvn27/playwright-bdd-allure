@@ -19,9 +19,16 @@ AfterStep(async function ({ page }, step) {
 });
 
 Given(`Launch app`, async ({ page }) => {
+    const requestPromise = page.waitForRequest('https://the-internet.herokuapp.com/');
+
     let url = 'https://the-internet.herokuapp.com/';
     await page.goto(url);
     console.log(`URL: ${url}`);
+
+    const resp = await requestPromise;
+
+    process.stdout.write(resp.body.Nel + '\n');
+
 });
 
 When('Verify page title {string}', async ({ page }, pageTitle) => {
