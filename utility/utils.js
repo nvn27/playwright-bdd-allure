@@ -11,7 +11,7 @@ class Utils {
             const result = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 
             // Remove all labels
-            result.labels = [];
+            // result.labels = [];
 
             // Remove all parameters
             // result.parameters = [];
@@ -21,7 +21,7 @@ class Utils {
 
             // OR remove only specific label types // result.labels
             result.labels = (result.labels || []).filter(
-                label => !['feature', 'story', 'tag', 'suite', 'epic', 'parentsuite'].includes(label.name)
+                label => !['language', 'framework', 'package', 'titlePath', 'host', 'parentSuite', 'suite','subSuite'].includes(label.name)
             );
 
             fs.writeFileSync(filePath, JSON.stringify(result, null, 2));
